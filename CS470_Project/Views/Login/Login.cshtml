@@ -1,0 +1,34 @@
+﻿@model CS470_Project.Models.User
+
+@{
+
+    Layout = null;
+
+}
+
+
+
+
+<div id="wrapper">
+
+    <div id="login-box">
+
+        <div id="login-box-top">Media DB Login Page</div>
+
+        <div id="login-box-bottom">
+
+            <form action="/Home/Index" method="post">
+
+                @Html.AntiForgeryToken()
+
+                <input value="" class="ripple-textbox small-margin-bottom" placeholder="Name" name="LName" type="text" autocomplete="off" required />
+                <input value="" class="ripple-textbox large-margin-bottom" placeholder="password" name="Password" type="password" autocomplete="off" required />
+                <input class="form-button" value="LOGIN" type="submit">
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
