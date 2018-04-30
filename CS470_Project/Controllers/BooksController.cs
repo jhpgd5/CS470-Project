@@ -13,13 +13,26 @@ namespace CS470_Project.Controllers
     public class BooksController : Controller
     {
         private SiteDBEntities db = new SiteDBEntities();
-        // GET: Books
-        public ActionResult Index()
+        
+        public ActionResult Index(string searchString)
         {
+
+            var books = from book in db.Books
+                           select book;
+
+            ViewBag.Currentfilter = searchString;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Title.Contains(searchString) || s.ISBN.ToString().Contains(searchString));
+            }
+            ViewBag.Books = books.ToList();
+
+            ViewBag.UserRole = (string)Session["UserRole"];
+            
             return View(db.Books.ToList());
         }
 
-        // GET: Books/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)

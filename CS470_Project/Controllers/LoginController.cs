@@ -17,31 +17,23 @@ namespace CS470_Project.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(User user)
+        public ActionResult Login(string LName)
         {
-            using (SiteDBEntities db = new SiteDBEntities())
+            
+            var query = from u in db.Users where (u.Lname == LName) select u;
+
+            if (query.Count() == 1)
             {
-                var usr = db.Users.Where(u => u.Lname == user.Lname).FirstOrDefault();
-                if (usr != null)
-                {
-                    if (usr.Role == "Admin")
-                    {
-                        Session["LastName"] = usr.Lname.ToString();
-                        Session["UserRole"] = usr.Role.ToString();
-                        return RedirectToAction("Index", "Home");
-                    }
-                    if (usr.Role == "User")
-                    {
-                        Session["LastName"] = usr.Lname.ToString();
-                        Session["UserRole"] = usr.Lname.ToString();
-                        return RedirectToAction("Index", "Home");
-                    }
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Wrong Username");
-                }
+                var user = query.First();
+                Session["UserRole"] = user.Role;
+
+                return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                // error handling
+            }
+
             return View();
         }
         public ActionResult Login()

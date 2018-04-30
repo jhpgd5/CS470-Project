@@ -4,6 +4,11 @@
     Layout = null;
 }
 
+@{
+    List<CS470_Project.Models.Book> books = ViewData["Books"] as List<CS470_Project.Models.Book>;
+    string role = (string)ViewData["UserRole"];
+}
+
 <!DOCTYPE html>
 
 <html>
@@ -12,9 +17,32 @@
     <title>Index</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    @*
+    @if ((string)Session["ActiveMode"] == "account")
+    {
+        <div class="dialog-box-header">Add user rule</div>
+    }
+    else if ((string)Session["ActiveMode"] == "department")
+    {
+        <div class="dialog-box-header">Add department (ID: @Session["ActiveSelector"]) rule</div>
+    }
+    *@
+
+    @if (role.Contains("Admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    }
+    <div id="button-container">
+
+        <div id="button-container-left">
+            <form id="search-form" action="/Books/Index" method="get">
+                <input type="text" id="search-input" name="searchString" placeholder="search..." autocomplete="off" />
+                <input type="submit" id="search-button" class="button left-button" value="SEARCH" />
+            </form>
+        </div>
+    </div>
     <table class="table">
         <tr>
             <th>
@@ -40,38 +68,42 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Year)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumPages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublisherID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreID)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.ISBN }) |
-                @Html.ActionLink("Details", "Details", new { id=item.ISBN }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.ISBN })
-            </td>
-        </tr>
-    }
-    
+
+        @foreach (var item in books)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumPages)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreID)
+                </td>
+                @if (role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ISBN }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ISBN }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ISBN })
+                    </td>
+                }
+            </tr>
+        }
+
     </table>
 </body>
 </html>
