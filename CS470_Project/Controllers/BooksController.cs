@@ -14,7 +14,7 @@ namespace CS470_Project.Controllers
     {
         private SiteDBEntities db = new SiteDBEntities();
         
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter)
         {
 
             var books = from book in db.Books
@@ -25,9 +25,36 @@ namespace CS470_Project.Controllers
             {
                 books = books.Where(s => s.Title.Contains(searchString) || s.ISBN.ToString().Contains(searchString));
             }
+        
+            switch (sortOrder)
+            {
+                case "title":
+                    books = books.OrderBy(x => x.Title);
+                    break;
+                case "description":
+                    books = books.OrderBy(x => x.Description);
+                    break;
+                case "year":
+                    books = books.OrderBy(x => x.Year);
+                    break;
+                case "rating":
+                    books = books.OrderBy(x => x.Rating);
+                    break;
+                case "NumPages":
+                    books = books.OrderBy(x => x.NumPages);
+                    break;
+                case "PublisherId":
+                    books = books.OrderBy(x => x.PublisherID);
+                    break;
+                case "GenreId":
+                    books = books.OrderBy(x => x.GenreID);
+                    break;
+                
+            }
             ViewBag.Books = books.ToList();
-
             ViewBag.UserRole = (string)Session["UserRole"];
+
+
             
             return View(db.Books.ToList());
         }
@@ -132,5 +159,6 @@ namespace CS470_Project.Controllers
             base.Dispose(disposing);
         }
 
+       
     }
 }

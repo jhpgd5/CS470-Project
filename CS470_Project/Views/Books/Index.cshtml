@@ -36,25 +36,26 @@
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.ActionLink("TITLE", "Index", new { sortOrder = "title", searchString = ViewBag.CurrentFilter })
+            </th>
+
+            <th>
+                @Html.ActionLink("DESCRIPTION", "Index", new { sortOrder = "description", searchString = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.ActionLink("YEAR", "Index", new { sortOrder = "year", searchString = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
+                @Html.ActionLink("RATING", "Index", new { sortOrder = "rating", searchString = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Rating)
+                @Html.ActionLink("PAGES", "Index", new { sortOrder = "NumPages", searchString = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NumPages)
+                @Html.ActionLink("PUBLISHER ID", "Index", new { sortOrder = "PublisherId", searchString = ViewBag.CurrentFilter })
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PublisherID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.GenreID)
+                @Html.ActionLink("GENRE ID", "Index", new { sortOrder = "GenreId", searchString = ViewBag.CurrentFilter })
             </th>
             <th></th>
         </tr>
