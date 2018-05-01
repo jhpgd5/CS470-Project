@@ -199,41 +199,52 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MovieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Author.cs">
-      <DependentUpon>SiteModel.tt</DependentUpon>
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Book.cs">
-      <DependentUpon>SiteModel.tt</DependentUpon>
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Book_Publishers.cs">
-      <DependentUpon>SiteModel.tt</DependentUpon>
+      <DependentUpon>TestDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Game.cs">
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\SiteModel.Context.cs">
+    <Compile Include="Models\TestDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SiteModel.Context.tt</DependentUpon>
+      <DependentUpon>TestDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SiteModel.cs">
+    <Compile Include="Models\TestDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SiteModel.tt</DependentUpon>
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\SiteModel.Designer.cs">
+    <Compile Include="Models\TestDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SiteModel.edmx</DependentUpon>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestGamesTable.cs">
+      <DependentUpon>TestDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestMovieTable.cs">
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>SiteModel.tt</DependentUpon>
+      <DependentUpon>TestDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -249,27 +260,27 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\SiteModel.Context.tt">
+    <Content Include="Models\TestDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteModel.edmx</DependentUpon>
-      <LastGenOutput>SiteModel.Context.cs</LastGenOutput>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+      <LastGenOutput>TestDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\SiteModel.tt">
+    <Content Include="Models\TestDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SiteModel.edmx</DependentUpon>
-      <LastGenOutput>SiteModel.cs</LastGenOutput>
+      <DependentUpon>TestDB.edmx</DependentUpon>
+      <LastGenOutput>TestDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="Models\SiteModel.edmx">
+    <EntityDeploy Include="Models\TestDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SiteModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>TestDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\SiteModel.edmx.diagram">
-      <DependentUpon>SiteModel.edmx</DependentUpon>
+    <Content Include="Models\TestDB.edmx.diagram">
+      <DependentUpon>TestDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -321,6 +332,16 @@
     <Content Include="Views\Books\Edit.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Games\Create.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\Movie\Create.cshtml" />
+    <Content Include="Views\Movie\Delete.cshtml" />
+    <Content Include="Views\Movie\Details.cshtml" />
+    <Content Include="Views\Movie\Edit.cshtml" />
+    <Content Include="Views\Movie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

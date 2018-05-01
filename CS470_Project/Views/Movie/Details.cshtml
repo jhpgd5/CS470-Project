@@ -1,0 +1,82 @@
+﻿@model CS470_Project.Models.TestMovieTable
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div>
+        <h4>TestMovieTable</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ISAN)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ISAN)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Year)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Year)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Runtime)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Runtime)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.ProducerID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.ProducerID)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.GenreID)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.GenreID)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>
