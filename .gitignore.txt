@@ -1,0 +1,3 @@
+CS470_Project/obj/*
+.vs/*
+CS470_Project/bin/*
