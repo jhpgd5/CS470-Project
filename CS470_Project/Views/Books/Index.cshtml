@@ -17,17 +17,7 @@
     <title>Index</title>
 </head>
 <body>
-    @*
-    @if ((string)Session["ActiveMode"] == "account")
-    {
-        <div class="dialog-box-header">Add user rule</div>
-    }
-    else if ((string)Session["ActiveMode"] == "department")
-    {
-        <div class="dialog-box-header">Add department (ID: @Session["ActiveSelector"]) rule</div>
-    }
-    *@
-
+    
     @if (role.Contains("Admin"))
     {
         <p>
