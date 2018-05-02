@@ -1,5 +1,10 @@
 ﻿@model IEnumerable<CS470_Project.Models.Game>
 
+@using System.Linq
+@using CS470_Project.Models;
+@using System.Data.Entity.Infrastructure;
+@using System.Data.SqlClient;
+@using CS470_Project.Models;
 @{
     Layout = null;
     string role = (string)ViewData["UserRole"];
@@ -14,10 +19,10 @@
 </head>
 <body>
     @if (role.Contains("Admin"))
-    {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    {/*
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*/
     }
     <table class="table">
         <tr>
@@ -47,44 +52,46 @@
             </th>
             <th></th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GameID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PublisherID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProducerID)
-            </td>
-            @if (role.Contains("Admin"))
-            {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
-            </td>
-            }
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PublisherID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProducerID)
+                </td>
+                
+                @if (role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
+                    </td>
+                }
+            </tr>
+        }
+
     </table>
 </body>
 </html>

@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<CS470_Project.Models.Movie>
-
+@using System.Linq
+@using CS470_Project.Models;
+@using System.Data.Entity.Infrastructure;
+@using System.Data.SqlClient;
+@using CS470_Project.Models;
 @{
     Layout = null;
     string role = (string)ViewData["UserRole"];
@@ -14,10 +18,10 @@
 </head>
 <body>
     @if (role.Contains("Admin"))
-    {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
+    {/*
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>*/
     }
     <table class="table">
         <tr>
@@ -42,43 +46,65 @@
             <th>
                 @Html.DisplayNameFor(model => model.GenreID)
             </th>
-            <th></th>
+            <th>
+                DIRECTOR NAME
+            </th>
         </tr>
-    
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ISAN)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Runtime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProducerID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GenreID)
-            </td>
-            @if (role.Contains("Admin"))
-            {
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ISAN }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ISAN }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ISAN })
-            </td>
-            }
-        </tr>
-    }
-    
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISAN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Yr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Rating)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Runtime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProducerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GenreID)
+                </td>
+                <td>
+                    @{
+                        SiteDBEntities db = new SiteDBEntities();
+
+                        string sql = @"SELECT DirectorID FROM [Directed] WHERE @ME = ISAN";
+                        DbRawSqlQuery<int> query = db.Database.SqlQuery<int>(sql, new SqlParameter("@ME", item.ISAN));
+                        int id = query.First();
+
+                        string sql2 = @"SELECT FName FROM [Directors] Where @ME = DirectorID";
+                        DbRawSqlQuery<string> query2 = db.Database.SqlQuery<string>(sql2, new SqlParameter("@ME", id.ToString()));
+                        string first = query2.First();
+
+                        string sql3 = @"SELECT LName FROM [Directors] Where @ME = DirectorID";
+
+                        DbRawSqlQuery<string> query3 = db.Database.SqlQuery<string>(sql3, new SqlParameter("@ME", id.ToString()));
+                        string second = query3.First();
+                    }
+                    @first , @second
+                </td>
+                @if (role.Contains("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ISAN }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ISAN }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ISAN })
+                    </td>
+                }
+            </tr>
+        }
+
     </table>
 </body>
 </html>

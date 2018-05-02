@@ -1,4 +1,9 @@
 ﻿@model IEnumerable<CS470_Project.Models.Book>
+@using System.Linq
+@using CS470_Project.Models;
+@using System.Data.Entity.Infrastructure;
+@using System.Data.SqlClient;
+@using CS470_Project.Models;
 
 @{
     Layout = null;
@@ -17,12 +22,12 @@
     <title>Index</title>
 </head>
 <body>
-    
+
     @if (role.Contains("Admin"))
-    {
+    {/*
         <p>
             @Html.ActionLink("Create New", "Create")
-        </p>
+        </p>*/
     }
     <div id="button-container">
 
@@ -38,10 +43,10 @@
             <th>
                 @Html.ActionLink("TITLE", "Index", new { sortOrder = "title", searchString = ViewBag.CurrentFilter })
             </th>
-
+            @*
             <th>
                 @Html.ActionLink("DESCRIPTION", "Index", new { sortOrder = "description", searchString = ViewBag.CurrentFilter })
-            </th>
+            </th>*@
             <th>
                 @Html.ActionLink("YEAR", "Index", new { sortOrder = "year", searchString = ViewBag.CurrentFilter })
             </th>
@@ -57,7 +62,9 @@
             <th>
                 @Html.ActionLink("GENRE ID", "Index", new { sortOrder = "GenreId", searchString = ViewBag.CurrentFilter })
             </th>
-            <th></th>
+            <th>
+                AUTHOR NAME
+            </th>
         </tr>
 
         @foreach (var item in books)
@@ -66,9 +73,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>
+                @*
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
+                    *@
                 <td>
                     @Html.DisplayFor(modelItem => item.Yr)
                 </td>
@@ -83,6 +92,25 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.GenreID)
+                </td>
+                <td>
+                    @{
+                        SiteDBEntities db = new SiteDBEntities();
+
+                        string sql = @"SELECT AuthorID FROM [Wrote] WHERE @ME = ISBN";
+                        DbRawSqlQuery<int> query = db.Database.SqlQuery<int>(sql, new SqlParameter("@ME", item.ISBN));
+                        int id = query.First();
+
+                        string sql2 = @"SELECT FName FROM [Authors] Where @ME = AuthorID";
+                        DbRawSqlQuery<string> query2 = db.Database.SqlQuery<string>(sql2, new SqlParameter("@ME", id.ToString()));
+                        string first = query2.First();
+
+                        string sql3 = @"SELECT LName FROM [Authors] Where @ME = AuthorID";
+
+                        DbRawSqlQuery<string> query3 = db.Database.SqlQuery<string>(sql3, new SqlParameter("@ME", id.ToString()));
+                        string second = query3.First();
+                    }
+                    @first , @second
                 </td>
                 @if (role.Contains("Admin"))
                 {

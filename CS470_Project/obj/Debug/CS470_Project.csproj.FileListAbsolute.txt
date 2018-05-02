@@ -244,3 +244,4 @@ C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\bin\Microsoft.Owin.
 C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\obj\Debug\CS470_Project.csproj.CoreCompileInputs.cache
 C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\obj\Debug\CS470_Project.dll
 C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\obj\Debug\CS470_Project.pdb
+C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\obj\Debug\CS470_Project.csprojResolveAssemblyReference.cache

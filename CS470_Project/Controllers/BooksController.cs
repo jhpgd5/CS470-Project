@@ -16,10 +16,9 @@ namespace CS470_Project.Controllers
         
         public ActionResult Index(string searchString, string sortOrder, string currentFilter)
         {
-
             var books = from book in db.Books
                            select book;
-
+            
             ViewBag.Currentfilter = searchString;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -53,7 +52,7 @@ namespace CS470_Project.Controllers
             }
             ViewBag.Books = books.ToList();
             ViewBag.UserRole = (string)Session["UserRole"];
-
+            ViewBag.db = db;
 
             
             return View(db.Books.ToList());
