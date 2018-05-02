@@ -1,7 +1,8 @@
-﻿@model IEnumerable<CS470_Project.Models.TestGamesTable>
+﻿@model IEnumerable<CS470_Project.Models.Game>
 
 @{
     Layout = null;
+    string role = (string)ViewData["UserRole"];
 }
 
 <!DOCTYPE html>
@@ -12,9 +13,12 @@
     <title>Index</title>
 </head>
 <body>
+    @if (role.Contains("Admin"))
+    {
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    }
     <table class="table">
         <tr>
             <th>
@@ -27,7 +31,7 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
+                @Html.DisplayNameFor(model => model.Yr)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Rating)
@@ -56,7 +60,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Year)
+                @Html.DisplayFor(modelItem => item.Yr)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)
@@ -70,11 +74,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.ProducerID)
             </td>
+            @if (role.Contains("Admin"))
+            {
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.GameID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.GameID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.GameID })
             </td>
+            }
         </tr>
     }
     

@@ -14,13 +14,24 @@ namespace CS470_Project.Models
     
     public partial class Book
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Book()
+        {
+            this.Authors = new HashSet<Author>();
+        }
+    
         public int ISBN { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Year { get; set; }
+        public int Yr { get; set; }
         public int Rating { get; set; }
         public int NumPages { get; set; }
         public int PublisherID { get; set; }
         public int GenreID { get; set; }
+    
+        public virtual Book_Publishers Book_Publishers { get; set; }
+        public virtual Genre Genre { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Author> Authors { get; set; }
     }
 }

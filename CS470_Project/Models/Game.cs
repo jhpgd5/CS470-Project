@@ -14,14 +14,17 @@ namespace CS470_Project.Models
     
     public partial class Game
     {
-        public int Id { get; set; }
-        public string GameID { get; set; }
+        public int GameID { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public Nullable<int> Year { get; set; }
-        public Nullable<int> Rating { get; set; }
-        public Nullable<int> GenreID { get; set; }
-        public Nullable<int> PublisherID { get; set; }
-        public Nullable<int> ProducerID { get; set; }
+        public int Yr { get; set; }
+        public int Rating { get; set; }
+        public int GenreID { get; set; }
+        public int PublisherID { get; set; }
+        public int ProducerID { get; set; }
+    
+        public virtual Game_Producers Game_Producers { get; set; }
+        public virtual Game_Publisher Game_Publisher { get; set; }
+        public virtual Genre Genre { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\jp048220\Documents\Visual Studio 2015\Projects\CS470-Project\CS470_Project\Models\TestDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Kenton\Desktop\CS470git\CS470-Project\CS470_Project\Models\TestDB.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

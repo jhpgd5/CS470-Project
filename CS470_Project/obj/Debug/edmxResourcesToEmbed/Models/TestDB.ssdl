@@ -2,19 +2,19 @@
 <Schema Namespace="SiteDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Authors">
     <Key>
-      <PropertyRef Name="AuthorId" />
+      <PropertyRef Name="AuthorID" />
     </Key>
-    <Property Name="AuthorId" Type="int" Nullable="false" />
-    <Property Name="FName" Type="nchar" MaxLength="10" Nullable="false" />
-    <Property Name="LName" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="AuthorID" Type="int" Nullable="false" />
+    <Property Name="FName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LName" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="NumBooksWritten" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Book_Publishers">
     <Key>
-      <PropertyRef Name="PublisherId" />
+      <PropertyRef Name="PublisherID" />
     </Key>
-    <Property Name="PublisherId" Type="int" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PublisherID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
     <Property Name="FoundingYear" Type="int" Nullable="false" />
     <Property Name="NumBooksPublished" Type="int" Nullable="false" />
   </EntityType>
@@ -23,54 +23,86 @@
       <PropertyRef Name="ISBN" />
     </Key>
     <Property Name="ISBN" Type="int" Nullable="false" />
-    <Property Name="Title" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Year" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="160" Nullable="false" />
+    <Property Name="Yr" Type="int" Nullable="false" />
     <Property Name="Rating" Type="int" Nullable="false" />
     <Property Name="NumPages" Type="int" Nullable="false" />
     <Property Name="PublisherID" Type="int" Nullable="false" />
     <Property Name="GenreID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="Game">
+  <EntityType Name="Directed">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="DirectorID" />
+      <PropertyRef Name="ISAN" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="GameID" Type="varchar" MaxLength="50" />
-    <Property Name="Title" Type="varchar" MaxLength="50" />
-    <Property Name="Description" Type="varchar" MaxLength="50" />
-    <Property Name="Year" Type="int" />
-    <Property Name="Rating" Type="int" />
-    <Property Name="GenreID" Type="int" />
-    <Property Name="PublisherID" Type="int" />
-    <Property Name="ProducerID" Type="int" />
+    <Property Name="DirectorID" Type="int" Nullable="false" />
+    <Property Name="ISAN" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="TestGamesTable">
+  <EntityType Name="Directors">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="DirectorID" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="GameID" Type="int" />
-    <Property Name="Title" Type="varchar" MaxLength="50" />
-    <Property Name="Description" Type="varchar" MaxLength="50" />
-    <Property Name="Year" Type="int" />
-    <Property Name="Rating" Type="int" />
-    <Property Name="GenreID" Type="int" />
-    <Property Name="PublisherID" Type="int" />
-    <Property Name="ProducerID" Type="int" />
+    <Property Name="DirectorID" Type="int" Nullable="false" />
+    <Property Name="FName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="LName" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="NumMoviesDirected" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="TestMovieTable">
+  <EntityType Name="Game_Producers">
     <Key>
-      <PropertyRef Name="Id" />
+      <PropertyRef Name="ProducerID" />
     </Key>
-    <Property Name="Id" Type="int" Nullable="false" />
-    <Property Name="ISAN" Type="int" />
-    <Property Name="Year" Type="int" />
-    <Property Name="Description" Type="varchar" MaxLength="50" />
-    <Property Name="Rating" Type="int" />
-    <Property Name="Runtime" Type="int" />
-    <Property Name="ProducerID" Type="int" />
-    <Property Name="GenreID" Type="int" />
+    <Property Name="ProducerID" Type="int" Nullable="false" />
+    <Property Name="ProducerName" Type="varchar" MaxLength="40" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Game_Publisher">
+    <Key>
+      <PropertyRef Name="PublisherID" />
+    </Key>
+    <Property Name="PublisherID" Type="int" Nullable="false" />
+    <Property Name="PublisherName" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="NumGamesPublished" Type="int" Nullable="false" />
+    <Property Name="FoundingYear" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Games">
+    <Key>
+      <PropertyRef Name="GameID" />
+    </Key>
+    <Property Name="GameID" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="160" Nullable="false" />
+    <Property Name="Yr" Type="int" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="GenreID" Type="int" Nullable="false" />
+    <Property Name="PublisherID" Type="int" Nullable="false" />
+    <Property Name="ProducerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Genres">
+    <Key>
+      <PropertyRef Name="GenreID" />
+    </Key>
+    <Property Name="GenreID" Type="int" Nullable="false" />
+    <Property Name="GenreName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Movies">
+    <Key>
+      <PropertyRef Name="ISAN" />
+    </Key>
+    <Property Name="ISAN" Type="int" Nullable="false" />
+    <Property Name="Title" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="Yr" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="160" Nullable="false" />
+    <Property Name="Rating" Type="int" Nullable="false" />
+    <Property Name="Runtime" Type="int" Nullable="false" />
+    <Property Name="ProducerID" Type="int" Nullable="false" />
+    <Property Name="GenreID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Producers">
+    <Key>
+      <PropertyRef Name="ProducerID" />
+    </Key>
+    <Property Name="ProducerID" Type="int" Nullable="false" />
+    <Property Name="ProducerName" Type="varchar" MaxLength="40" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -81,13 +113,203 @@
     <Property Name="Lname" Type="nchar" MaxLength="10" />
     <Property Name="Role" Type="nchar" MaxLength="10" />
   </EntityType>
+  <EntityType Name="Wrote">
+    <Key>
+      <PropertyRef Name="AuthorID" />
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="AuthorID" Type="int" Nullable="false" />
+    <Property Name="ISBN" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Books__GenreID__59063A47">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Books__Publisher__5812160E">
+    <End Role="Book_Publishers" Type="Self.Book_Publishers" Multiplicity="1" />
+    <End Role="Books" Type="Self.Books" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book_Publishers">
+        <PropertyRef Name="PublisherID" />
+      </Principal>
+      <Dependent Role="Books">
+        <PropertyRef Name="PublisherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Directed__Direct__6A30C649">
+    <End Role="Directors" Type="Self.Directors" Multiplicity="1" />
+    <End Role="Directed" Type="Self.Directed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Directors">
+        <PropertyRef Name="DirectorID" />
+      </Principal>
+      <Dependent Role="Directed">
+        <PropertyRef Name="DirectorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Directed__ISAN__72C60C4A">
+    <End Role="Movies" Type="Self.Movies" Multiplicity="1" />
+    <End Role="Directed" Type="Self.Directed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Movies">
+        <PropertyRef Name="ISAN" />
+      </Principal>
+      <Dependent Role="Directed">
+        <PropertyRef Name="ISAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Games__GenreID__619B8048">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Games__ProducerI__6383C8BA">
+    <End Role="Game_Producers" Type="Self.Game_Producers" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game_Producers">
+        <PropertyRef Name="ProducerID" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="ProducerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Games__Publisher__628FA481">
+    <End Role="Game_Publisher" Type="Self.Game_Publisher" Multiplicity="1" />
+    <End Role="Games" Type="Self.Games" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game_Publisher">
+        <PropertyRef Name="PublisherID" />
+      </Principal>
+      <Dependent Role="Games">
+        <PropertyRef Name="PublisherID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Movies__GenreID__71D1E811">
+    <End Role="Genres" Type="Self.Genres" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Genres">
+        <PropertyRef Name="GenreID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="GenreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Movies__Producer__70DDC3D8">
+    <End Role="Producers" Type="Self.Producers" Multiplicity="1" />
+    <End Role="Movies" Type="Self.Movies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producers">
+        <PropertyRef Name="ProducerID" />
+      </Principal>
+      <Dependent Role="Movies">
+        <PropertyRef Name="ProducerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wrote__AuthorID__66603565">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+    <End Role="Wrote" Type="Self.Wrote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="AuthorID" />
+      </Principal>
+      <Dependent Role="Wrote">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Wrote__ISBN__6754599E">
+    <End Role="Books" Type="Self.Books" Multiplicity="1" />
+    <End Role="Wrote" Type="Self.Wrote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="Wrote">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="SiteDBModelStoreContainer">
     <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Book_Publishers" EntityType="Self.Book_Publishers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TestGamesTable" EntityType="Self.TestGamesTable" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TestMovieTable" EntityType="Self.TestMovieTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directed" EntityType="Self.Directed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Directors" EntityType="Self.Directors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Game_Producers" EntityType="Self.Game_Producers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Game_Publisher" EntityType="Self.Game_Publisher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Games" EntityType="Self.Games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Genres" EntityType="Self.Genres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Movies" EntityType="Self.Movies" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producers" EntityType="Self.Producers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Wrote" EntityType="Self.Wrote" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Books__GenreID__59063A47" Association="Self.FK__Books__GenreID__59063A47">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Books__Publisher__5812160E" Association="Self.FK__Books__Publisher__5812160E">
+      <End Role="Book_Publishers" EntitySet="Book_Publishers" />
+      <End Role="Books" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Directed__Direct__6A30C649" Association="Self.FK__Directed__Direct__6A30C649">
+      <End Role="Directors" EntitySet="Directors" />
+      <End Role="Directed" EntitySet="Directed" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Directed__ISAN__72C60C4A" Association="Self.FK__Directed__ISAN__72C60C4A">
+      <End Role="Movies" EntitySet="Movies" />
+      <End Role="Directed" EntitySet="Directed" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Games__GenreID__619B8048" Association="Self.FK__Games__GenreID__619B8048">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Games__ProducerI__6383C8BA" Association="Self.FK__Games__ProducerI__6383C8BA">
+      <End Role="Game_Producers" EntitySet="Game_Producers" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Games__Publisher__628FA481" Association="Self.FK__Games__Publisher__628FA481">
+      <End Role="Game_Publisher" EntitySet="Game_Publisher" />
+      <End Role="Games" EntitySet="Games" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Movies__GenreID__71D1E811" Association="Self.FK__Movies__GenreID__71D1E811">
+      <End Role="Genres" EntitySet="Genres" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Movies__Producer__70DDC3D8" Association="Self.FK__Movies__Producer__70DDC3D8">
+      <End Role="Producers" EntitySet="Producers" />
+      <End Role="Movies" EntitySet="Movies" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wrote__AuthorID__66603565" Association="Self.FK__Wrote__AuthorID__66603565">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Wrote" EntitySet="Wrote" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Wrote__ISBN__6754599E" Association="Self.FK__Wrote__ISBN__6754599E">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Wrote" EntitySet="Wrote" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -1,7 +1,8 @@
-﻿@model IEnumerable<CS470_Project.Models.TestMovieTable>
+﻿@model IEnumerable<CS470_Project.Models.Movie>
 
 @{
     Layout = null;
+    string role = (string)ViewData["UserRole"];
 }
 
 <!DOCTYPE html>
@@ -12,16 +13,19 @@
     <title>Index</title>
 </head>
 <body>
+    @if (role.Contains("Admin"))
+    {
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
+    }
     <table class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.ISAN)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
+                @Html.DisplayNameFor(model => model.Yr)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Description)
@@ -47,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.ISAN)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Year)
+                @Html.DisplayFor(modelItem => item.Yr)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
@@ -64,11 +68,14 @@
             <td>
                 @Html.DisplayFor(modelItem => item.GenreID)
             </td>
+            @if (role.Contains("Admin"))
+            {
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.ISAN }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ISAN }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ISAN })
             </td>
+            }
         </tr>
     }
     

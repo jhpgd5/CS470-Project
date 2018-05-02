@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SiteDBModelStoreContainer" CdmEntityContainer="SiteDBEntities">
+  <EntityContainerMapping StorageEntityContainer="SiteDBModelStoreContainer" CdmEntityContainer="Entities">
     <EntitySetMapping Name="Authors">
       <EntityTypeMapping TypeName="SiteDBModel.Author">
         <MappingFragment StoreEntitySet="Authors">
-          <ScalarProperty Name="AuthorId" ColumnName="AuthorId" />
+          <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
           <ScalarProperty Name="FName" ColumnName="FName" />
           <ScalarProperty Name="LName" ColumnName="LName" />
           <ScalarProperty Name="NumBooksWritten" ColumnName="NumBooksWritten" />
@@ -14,7 +14,7 @@
     <EntitySetMapping Name="Book_Publishers">
       <EntityTypeMapping TypeName="SiteDBModel.Book_Publishers">
         <MappingFragment StoreEntitySet="Book_Publishers">
-          <ScalarProperty Name="PublisherId" ColumnName="PublisherId" />
+          <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="FoundingYear" ColumnName="FoundingYear" />
           <ScalarProperty Name="NumBooksPublished" ColumnName="NumBooksPublished" />
@@ -27,7 +27,7 @@
           <ScalarProperty Name="ISBN" ColumnName="ISBN" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Yr" ColumnName="Yr" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="NumPages" ColumnName="NumPages" />
           <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
@@ -35,14 +35,41 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Directors">
+      <EntityTypeMapping TypeName="SiteDBModel.Director">
+        <MappingFragment StoreEntitySet="Directors">
+          <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+          <ScalarProperty Name="FName" ColumnName="FName" />
+          <ScalarProperty Name="LName" ColumnName="LName" />
+          <ScalarProperty Name="NumMoviesDirected" ColumnName="NumMoviesDirected" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Game_Producers">
+      <EntityTypeMapping TypeName="SiteDBModel.Game_Producers">
+        <MappingFragment StoreEntitySet="Game_Producers">
+          <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+          <ScalarProperty Name="ProducerName" ColumnName="ProducerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Game_Publisher">
+      <EntityTypeMapping TypeName="SiteDBModel.Game_Publisher">
+        <MappingFragment StoreEntitySet="Game_Publisher">
+          <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
+          <ScalarProperty Name="PublisherName" ColumnName="PublisherName" />
+          <ScalarProperty Name="NumGamesPublished" ColumnName="NumGamesPublished" />
+          <ScalarProperty Name="FoundingYear" ColumnName="FoundingYear" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Games">
       <EntityTypeMapping TypeName="SiteDBModel.Game">
-        <MappingFragment StoreEntitySet="Game">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+        <MappingFragment StoreEntitySet="Games">
           <ScalarProperty Name="GameID" ColumnName="GameID" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Yr" ColumnName="Yr" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="GenreID" ColumnName="GenreID" />
           <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
@@ -50,32 +77,33 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TestGamesTables">
-      <EntityTypeMapping TypeName="SiteDBModel.TestGamesTable">
-        <MappingFragment StoreEntitySet="TestGamesTable">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="GameID" ColumnName="GameID" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
-          <ScalarProperty Name="Rating" ColumnName="Rating" />
+    <EntitySetMapping Name="Genres">
+      <EntityTypeMapping TypeName="SiteDBModel.Genre">
+        <MappingFragment StoreEntitySet="Genres">
           <ScalarProperty Name="GenreID" ColumnName="GenreID" />
-          <ScalarProperty Name="PublisherID" ColumnName="PublisherID" />
-          <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+          <ScalarProperty Name="GenreName" ColumnName="GenreName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="TestMovieTables">
-      <EntityTypeMapping TypeName="SiteDBModel.TestMovieTable">
-        <MappingFragment StoreEntitySet="TestMovieTable">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+    <EntitySetMapping Name="Movies1">
+      <EntityTypeMapping TypeName="SiteDBModel.Movie">
+        <MappingFragment StoreEntitySet="Movies">
           <ScalarProperty Name="ISAN" ColumnName="ISAN" />
-          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Yr" ColumnName="Yr" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Rating" ColumnName="Rating" />
           <ScalarProperty Name="Runtime" ColumnName="Runtime" />
           <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
           <ScalarProperty Name="GenreID" ColumnName="GenreID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producers">
+      <EntityTypeMapping TypeName="SiteDBModel.Producer">
+        <MappingFragment StoreEntitySet="Producers">
+          <ScalarProperty Name="ProducerID" ColumnName="ProducerID" />
+          <ScalarProperty Name="ProducerName" ColumnName="ProducerName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -89,5 +117,21 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="Directed" TypeName="SiteDBModel.Directed" StoreEntitySet="Directed">
+      <EndProperty Name="Directors">
+        <ScalarProperty Name="DirectorID" ColumnName="DirectorID" />
+      </EndProperty>
+      <EndProperty Name="Movies">
+        <ScalarProperty Name="ISAN" ColumnName="ISAN" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="Wrote" TypeName="SiteDBModel.Wrote" StoreEntitySet="Wrote">
+      <EndProperty Name="Authors">
+        <ScalarProperty Name="AuthorID" ColumnName="AuthorID" />
+      </EndProperty>
+      <EndProperty Name="Books">
+        <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

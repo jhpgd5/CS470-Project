@@ -17,7 +17,8 @@ namespace CS470_Project.Controllers
         // GET: Movie
         public ActionResult Index()
         {
-            return View(db.TestMovieTables.ToList());
+            ViewBag.UserRole = (string)Session["UserRole"];
+            return View(db.Movies.ToList());
         }
 
         // GET: Movie/Details/
@@ -27,7 +28,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestMovieTable testMovieTable = db.TestMovieTables.Find(id);
+            Movie testMovieTable = db.Movies.Find(id);
             if (testMovieTable == null)
             {
                 return HttpNotFound();
@@ -44,11 +45,11 @@ namespace CS470_Project.Controllers
         // POST: Movie/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,ISAN,Year,Description,Rating,Runtime,ProducerID,GenreID")] TestMovieTable testMovieTable)
+        public ActionResult Create([Bind(Include = "Id,ISAN,Year,Description,Rating,Runtime,ProducerID,GenreID")] Movie testMovieTable)
         {
             if (ModelState.IsValid)
             {
-                db.TestMovieTables.Add(testMovieTable);
+                db.Movies.Add(testMovieTable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -63,7 +64,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestMovieTable testMovieTable = db.TestMovieTables.Find(id);
+            Movie testMovieTable = db.Movies.Find(id);
             if (testMovieTable == null)
             {
                 return HttpNotFound();
@@ -74,7 +75,7 @@ namespace CS470_Project.Controllers
         // POST: Movie/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,ISAN,Year,Description,Rating,Runtime,ProducerID,GenreID")] TestMovieTable testMovieTable)
+        public ActionResult Edit([Bind(Include = "Id,ISAN,Year,Description,Rating,Runtime,ProducerID,GenreID")] Movie testMovieTable)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +93,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestMovieTable testMovieTable = db.TestMovieTables.Find(id);
+            Movie testMovieTable = db.Movies.Find(id);
             if (testMovieTable == null)
             {
                 return HttpNotFound();
@@ -105,8 +106,8 @@ namespace CS470_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TestMovieTable testMovieTable = db.TestMovieTables.Find(id);
-            db.TestMovieTables.Remove(testMovieTable);
+            Movie testMovieTable = db.Movies.Find(id);
+            db.Movies.Remove(testMovieTable);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

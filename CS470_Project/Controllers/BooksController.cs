@@ -35,7 +35,7 @@ namespace CS470_Project.Controllers
                     books = books.OrderBy(x => x.Description);
                     break;
                 case "year":
-                    books = books.OrderBy(x => x.Year);
+                    books = books.OrderBy(x => x.Yr);
                     break;
                 case "rating":
                     books = books.OrderBy(x => x.Rating);

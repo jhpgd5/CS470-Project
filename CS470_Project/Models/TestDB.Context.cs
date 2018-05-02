@@ -28,9 +28,13 @@ namespace CS470_Project.Models
         public virtual DbSet<Author> Authors { get; set; }
         public virtual DbSet<Book_Publishers> Book_Publishers { get; set; }
         public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Director> Directors { get; set; }
+        public virtual DbSet<Game_Producers> Game_Producers { get; set; }
+        public virtual DbSet<Game_Publisher> Game_Publisher { get; set; }
         public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<TestGamesTable> TestGamesTables { get; set; }
-        public virtual DbSet<TestMovieTable> TestMovieTables { get; set; }
+        public virtual DbSet<Genre> Genres { get; set; }
+        public virtual DbSet<Movie> Movies { get; set; }
+        public virtual DbSet<Producer> Producers { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }
 }

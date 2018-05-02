@@ -17,7 +17,8 @@ namespace CS470_Project.Controllers
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.TestGamesTables.ToList());
+            ViewBag.UserRole = (string)Session["UserRole"];
+            return View(db.Games.ToList());
         }
 
         // GET: Games/Details/5
@@ -27,7 +28,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestGamesTable testGamesTable = db.TestGamesTables.Find(id);
+            Game testGamesTable = db.Games.Find(id);
             if (testGamesTable == null)
             {
                 return HttpNotFound();
@@ -44,11 +45,11 @@ namespace CS470_Project.Controllers
         // POST: Games/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,GameID,Title,Description,Year,Rating,GenreID,PublisherID,ProducerID")] TestGamesTable testGamesTable)
+        public ActionResult Create([Bind(Include = "Id,GameID,Title,Description,Year,Rating,GenreID,PublisherID,ProducerID")] Game testGamesTable)
         {
             if (ModelState.IsValid)
             {
-                db.TestGamesTables.Add(testGamesTable);
+                db.Games.Add(testGamesTable);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -63,7 +64,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestGamesTable testGamesTable = db.TestGamesTables.Find(id);
+            Game testGamesTable = db.Games.Find(id);
             if (testGamesTable == null)
             {
                 return HttpNotFound();
@@ -74,7 +75,7 @@ namespace CS470_Project.Controllers
         // POST: Games/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,GameID,Title,Description,Year,Rating,GenreID,PublisherID,ProducerID")] TestGamesTable testGamesTable)
+        public ActionResult Edit([Bind(Include = "Id,GameID,Title,Description,Year,Rating,GenreID,PublisherID,ProducerID")] Game testGamesTable)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +93,7 @@ namespace CS470_Project.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestGamesTable testGamesTable = db.TestGamesTables.Find(id);
+            Game testGamesTable = db.Games.Find(id);
             if (testGamesTable == null)
             {
                 return HttpNotFound();
@@ -105,8 +106,8 @@ namespace CS470_Project.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TestGamesTable testGamesTable = db.TestGamesTables.Find(id);
-            db.TestGamesTables.Remove(testGamesTable);
+            Game testGamesTable = db.Games.Find(id);
+            db.Games.Remove(testGamesTable);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

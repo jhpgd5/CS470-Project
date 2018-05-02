@@ -14,9 +14,18 @@ namespace CS470_Project.Models
     
     public partial class Author
     {
-        public int AuthorId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Author()
+        {
+            this.Books = new HashSet<Book>();
+        }
+    
+        public int AuthorID { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
         public int NumBooksWritten { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Book> Books { get; set; }
     }
 }
